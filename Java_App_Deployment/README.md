@@ -17,7 +17,7 @@ Build Maven Artifact:
  
 Build Docker image for Springboot Application
 --------------
-    docker build -t vikashashoke/kubernetes-configmap-reload .
+    docker build -t ameekhrifa/kubernetes-configmap-reload .
   
 Docker login
 -------------
