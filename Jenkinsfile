@@ -6,7 +6,7 @@ pipeline {
             stage ('Git checkout') {
                 steps {
                     script {
-                        gitCheckout {   
+                        gitCheckout() {   
                             git branch: 'main', url: 'https://github.com/Ameekh-Rifa/Java-Project-DevOps.git'
                         }
                     }
