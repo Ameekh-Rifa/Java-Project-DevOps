@@ -10,11 +10,18 @@ pipeline {
                         url: "https://github.com/Ameekh-Rifa/Java-Project-DevOps.git"
                         )
                      }
-                 }
+            }
             stage('Maven Unit test') {
                 steps {
                     script {
-                            mvnTest()
+                        mvnTest()
+                    }
+                }
+            }
+            stage('Maven Integration Testing') {
+                steps {
+                    script {
+                        mvnIntegrationTest()
                     }
                 }
             }
