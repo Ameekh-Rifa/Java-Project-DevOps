@@ -1,6 +1,7 @@
 @Library ('Jenkins-shared-library') _
 
-pipeline {
+pipeline 
+    {
     agent any 
         parameters {
             choice(name: 'action', choices: 'create\ndelete', description: 'Create/Destroy')
