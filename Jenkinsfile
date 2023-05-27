@@ -5,6 +5,9 @@ pipeline
     agent any 
         parameters {
             choice(name: 'action', choices: 'create\ndelete', description: 'Create/Destroy')
+            string(name: 'ImageName', description: "Name of the docker build", defaultValue: 'Java-app')
+            string(name: 'ImageTag', description: "Tag of the docker build", defaultValue: 'v1')
+            string(name: 'DockerHubUser', description: "Name of the Application", defaultValue: 'ameekh')
         }
         stages {
             stage('Git Checkout'){
@@ -52,9 +55,17 @@ pipeline
             }
             stage('Maven Build'){
                 when { expression { params.action == 'create' } }
-                steps {
+                steps{
                     script {
                         mvnBuild()
+                    }
+                }
+            }
+            stage('Docker Image Build'){
+                when { expression {  params.action == 'create' } }
+                steps{
+                    script{
+                        dockerBuild("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
                     }
                 }
             }
