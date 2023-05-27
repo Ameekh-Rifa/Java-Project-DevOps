@@ -37,7 +37,16 @@ pipeline
                 steps {
                     script {
                         def SonarQubecredentialsId = 'Sonar-Jenkins-Token'
-                        statiCodeAnalysis(SonarQubecredentialsId)
+                        staticCodeAnalysis(SonarQubecredentialsId)
+                    }
+                }
+            }
+            stage('Quality Gate status Check'){
+                when { expression { params.action == 'create' } }
+                steps {
+                    script {
+                        def SonarQubecredentialsId = 'Sonar-Jenkins-Token'
+                        qualityGateStatus(SonarQubecredentialsId)
                     }
                 }
             }
